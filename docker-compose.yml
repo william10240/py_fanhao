@@ -1,25 +1,30 @@
 
 version: '2'
 
-networks:
-  default:
-    external:
-        name: wm_net
-
 services:
   mfan:
     build: .
-    image: mfan:3.5
-    container_name: fan
+    image: mfan:3.5-alpine
     volumes:
       - ./:/usr/src/myapp
     ports: 
       - 7004:7004
     command: python3 /usr/src/myapp/app.py
+    depends_on:
+      - msq
     restart: always
 
-
+  msq:
+    image: mysql:5.7.22
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/db:/var/lib/mysql
+#    ports: 
+#      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=helloworld
+    restart: always
     
     
     
-# docker run -it -v .:/usr/src/myapp -p 7004:7004 python:3.5 /bin/bash
+# docker run -it -v .:/usr/src/myapp -p 7004:7004 python:3.5-alpine /bin/bash

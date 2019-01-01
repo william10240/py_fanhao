@@ -7,7 +7,7 @@ import time
 from peewee import MySQLDatabase,Model,PrimaryKeyField,CharField,CharField,IntegerField
 
 
-db = MySQLDatabase(host='127.0.0.1', user='root', passwd='helloworld', database='fanhao', charset='utf8', port=3306)
+db = MySQLDatabase(host='msq', user='root', passwd='helloworld', database='fanhao', charset='utf8', port=3306)
 
 class BaseModel(Model):
     class Meta:

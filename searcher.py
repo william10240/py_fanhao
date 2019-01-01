@@ -17,7 +17,7 @@ ptImg = re.compile(r'<a class="bigImage" href="(.*?)">', re.I | re.S | re.M)
 
 
 def opener():
-    proxy_handler = request.ProxyHandler({'http': 'http://127.0.0.1:1080/','https': 'http://127.0.0.1:1080/'})
+    proxy_handler = request.ProxyHandler({'http': 'http://192.168.1.3:1080/','https': 'http://192.168.1.3:1080/'})
     topener = request.build_opener(proxy_handler)
     opener.addheaders = [("authority", "www.javbus.com")]
     # opener.addheaders = [("method", "GET")]
