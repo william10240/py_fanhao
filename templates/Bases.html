@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% block title %}{% endblock %} 番械库 - 私人番号收藏 By SunCoder</title>
+    <link href="/favicon.ico" type="image/x-icon" rel="icon"/>
+    <link href="/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
+    <link rel="stylesheet" href="static/plugin/loading/loading.css" />
+</head>
+<body>
+<!-- Static navbar -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">番械库<small> - 私人番号收藏</small></a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">{% block content %}{% endblock %}</div>
+{% block footer %}
+<div class="text-center">
+<br /><br />
+&copy; Copyright 2010 by SunCoder
+<br /><br />
+<br /><br />
+</div>
+{% endblock %}
+<script type="text/javascript" src="static/plugin/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="static/plugin/loading/loading.js"></script>
+{% block script %}{% endblock %}
+</body>
+</html>

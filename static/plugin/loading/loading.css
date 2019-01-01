@@ -1,0 +1,9 @@
+.Ajaxloading {
+    background: url('loader4.gif') center center no-repeat #fff;
+    position: absolute;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    z-index: 196;
+}

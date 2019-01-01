@@ -1,0 +1,205 @@
+{% extends "Bases.html" %}
+{% block title %}
+{% endblock %}
+{% block content %}
+    <!--筛选&搜索-->
+    <div>
+        <form method="get" id="fm" class="btn-group" style="margin-bottom: 15px;">
+            <select class="btn btn-default" name="downed" title="downed">
+                <option value="">全部</option>
+                <option value="0" {% if requestdata['downed']=='0' %}selected="selected"{% endif %}>未下载</option>
+                <option value="1" {% if requestdata['downed']=='1' %}selected="selected"{% endif %}>已下载</option>
+            </select>
+            <select class="btn btn-default" name="ma" title="ma">
+                <option value="">全部</option>
+                <option value="0" {% if requestdata['ma']=='0' %}selected="selected"{% endif %}>未知</option>
+                <option value="1" {% if requestdata['ma']=='1' %}selected="selected"{% endif %}>有码</option>
+                <option value="2" {% if requestdata['ma']=='2' %}selected="selected"{% endif %}>无码</option>
+            </select>
+            <select class="btn btn-default sel" name="code" title="code">
+                <option value="">全部</option>{% for code in allcode %}
+                <option value="{{ code.code }}" {% if requestdata['code']==code.code %}selected="selected"{% endif %}>{{ code.code }}</option>{% endfor %}
+            </select>
+            <select class="btn btn-default" name="star" title="star">
+                <option value="">全部</option>{% for star in allstar %}
+                <option value="{% if star.star %}{{ star.star }}{% else %}-1{% endif %}" {% if requestdata['star']==star.star %}selected="selected"{% endif %}>{{ star.star }}</option>{% endfor %}
+            </select>
+            <button class="btn btn-default" type="submit" onclick="$('#pageindex').val('');$('#pagesize').val('');">搜索</button>
+            <input type="hidden" name="pageindex" id="pageindex" value="{{ requestdata['pageindex'] }}"/>
+            <input type="hidden" name="pagesize" id="pagesize" value="{{ requestdata['pagesize'] }}"/>
+        </form>
+
+        <form class="input-group pull-right" style="width: 250px;" id="searchform">
+            <input type="text" placeholder="IPZ-135" class="form-control" id="xcode"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit" id="search">Search !</button>
+            </span>
+        </form>
+    </div>
+
+    <div class="text-center">{{ pagehtml }}</div>
+
+    <div class="uk-grid" data-uk-grid-margin>
+        {% for p in ps %}
+            <div class="uk-width-small-1-1 uk-width-medium-1-2 uk-width-large-1-3">
+                <div id="col-{{ p.id }}" class="thumbnail">
+                    <div class="caption text-center">
+                        <div class="text-left">
+                            <a href="https://www.javbus.info/{{ p.code }}" target="_blank" style="color: #333333;">{{ p.code }}</a>
+                            {% if p.starcode %}
+                                (<a href="https://www.javbus.info/star/{{ p.starcode }}" target="_blank" style="color: #333333;" id="star-{{ p.id }}">{{ p.star }}</a>)
+                            {% else %}
+                                (<a href="https://www.javbus.info/star/{{ p.starcode }}" target="_blank" style="color: #ff0000;" id="star-{{ p.id }}">{{ p.star }}</a>)
+                            {% endif %}
+                        </div>
+                        <div class="pull-left">
+                            {% if p.ima == 0 %}
+                                <a href="javascript:" class="btn btn-primary btn-xs" onclick="doit('ima','{{ p.id }}','1')">未知</a>
+                            {% elif p.ima == 1 %}
+                                <a href="javascript:" class="btn btn-warning btn-xs" onclick="doit('ima','{{ p.id }}','2')">有码</a>
+                            {% elif p.ima == 2 %}
+                                <a href="javascript:" class="btn btn-success btn-xs" onclick="doit('ima','{{ p.id }}','0')">无码</a>
+                            {% endif %}
+                            {% if p.iface == 0 %}
+                                <a href="javascript:" class="btn btn-success btn-xs" onclick="doit('iface','{{ p.id }}','1')">不是</a>
+                            {% elif p.iface == 1 %}
+                                <a href="javascript:" class="btn btn-warning btn-xs" onclick="doit('iface','{{ p.id }}','0')">封面党</a>
+                            {% endif %}
+                        </div>
+                        {% if p.downed == 1 %}
+                            <a href="javascript:" class="btn btn-success btn-xs" onclick="doit('downed','{{ p.id }}','0')">已下载</a>
+                        {% else %}
+                            <a href="javascript:" class="btn btn-primary btn-xs" onclick="doit('downed','{{ p.id }}','1')">未下载</a>
+                        {% endif %}
+
+                        <div class="pull-right">
+                            <a href="javascript:" class="btn btn-success btn-xs" onclick="reimg('{{ p.id }}','{{ p.code }}')">更新信息</a>
+                        </div>
+                    </div>
+                    <a href="https://www.javbus.info/{{ p.code }}" target="_blank"><img id="pic-{{ p.id }}" src="./photos/{{ p.fname }}"/></a>
+                    <div class="caption">
+                        <a href="javascript:" class="btn btn-success btn-xs pull-right" onclick="deimg('{{ p.id }}')">删除</a>
+                        <span id="star" class="level">
+                            <i class="x" onclick="doit('starnum','{{ p.id }}',0);" title="零分">x</i>
+                            <i class="{% if p.starnum > 0 %}level_solid{% else %}level_hollow{% endif %}" onclick="doit('starnum','{{ p.id }}',1);" title="1分"></i>
+                            <i class="{% if p.starnum > 1 %}level_solid{% else %}level_hollow{% endif %}" onclick="doit('starnum','{{ p.id }}',2);" title="2分"></i>
+                            <i class="{% if p.starnum > 2 %}level_solid{% else %}level_hollow{% endif %}" onclick="doit('starnum','{{ p.id }}',3);" title="3分"></i>
+                            <i class="{% if p.starnum > 3 %}level_solid{% else %}level_hollow{% endif %}" onclick="doit('starnum','{{ p.id }}',4);" title="4分"></i>
+                            <i class="{% if p.starnum > 4 %}level_solid{% else %}level_hollow{% endif %}" onclick="doit('starnum','{{ p.id }}',5);" title="5分"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center">{{ pagehtml }}</div>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript" src="static/plugin/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="static/plugin/bootstrap/css/bootstrap.min.css"/>
+
+    <script type="text/javascript" src="static/plugin/uikit/js/uikit.min.js"></script>
+    <link rel="stylesheet" href="static/plugin/uikit/css/uikit.min.css"/>
+    <style type="text/css">
+        input, select, button { height: 32px; }
+        .level { display: inline-block; height: 15px; }
+        .level * { float: left; display: inline-block; width: 15px; height: 15px; line-height: 15px; margin-right: 4px; cursor: pointer; vertical-align: middle; text-align: center; }
+        .level_solid, .level_hollow { background-image: url('static/images/icon2.png'); background-repeat: no-repeat; }
+        .level_solid { background-position: 0 0; }
+        .level_hollow { background-position: -21px 0; }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $("#searchform").submit(function () {
+                var xcode = $('#xcode').val();
+                if (!xcode) {
+                    return false;
+                }
+                loading.show('#searchform');
+                $.ajax({
+                    url: 'search',
+                    data: {'xcode': xcode},
+                    dataType: 'json',
+                    success: function (resp) {
+                        if (resp.code === 0 || resp.code === -2) {
+                            alert('番号信息获取成功' + (resp.code === -2 ? ',获取图片失败,请稍后重新获取图片' : ''));
+                            //location.href = '/';
+                            location.reload();
+                        }
+                        else {
+                            alert(resp.msg);
+                        }
+                        //console.log(resp);
+                    },
+                    error: function () {
+                        alert('番号信息获取失败:服务器返回错误,请重试');
+                    },
+                    complete: function () {
+                        loading.hide('#searchform');
+                    }
+                });
+                return false;
+            });
+            $('.sel').change(function () {
+                console.log('change');
+                $("#pageindex").val(1);
+                $('#fm').submit()
+            });
+        });
+        function doit(t, i, v) {
+            $.get(Array('set', t, i, v).join('/'), function (resp) {
+                if (resp.code === 0) {
+                    location.reload();
+                }
+                else {
+                    alert(resp.msg);
+                }
+            }, 'json');
+        }
+        function reimg(pid, xcode) {
+            loading.show('#col-' + pid);
+            $.ajax({
+                url: 'recode',
+                type: 'GET',
+                dataType: 'json',
+                data: {'xcode': xcode},
+
+                success: function (resp) {
+                    if (resp.code === 0) {
+                        //console.log(resp.data.star);
+                        $('#pic-' + pid).attr('src', $('#pic-' + pid).attr('src') + '?_=' + new Date().getTime());
+                        $('#star-' + pid).html(resp.data.star);
+                        //location.reload();
+                    } else {
+                        alert(resp.msg);
+                    }
+                },
+                complete: function () {
+                    loading.hide('#col-' + pid);
+                },
+                error: function () {
+                    alert(xcode + ' 图片信息获取失败,请重试');
+                }
+            });
+        }
+        function deimg(pid) {
+            if (!confirm('确定删除？')) {
+                return false;
+            }
+            $.get('deimg', {'pid': pid}, function (resp) {
+                if (resp.code === 0) {
+                    //$("#col-" + pid).remove()
+                    location.reload()
+                }
+                else {
+                    alert(resp.msg);
+                }
+            }, 'json');
+        }
+        function goPage(pageindex) {
+            $("#pageindex").val(pageindex);
+            $("#fm").submit();
+        }
+    </script>
+{% endblock %}
