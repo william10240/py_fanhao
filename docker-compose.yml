@@ -1,0 +1,25 @@
+
+version: '2'
+
+networks:
+  default:
+    external:
+        name: wm_net
+
+services:
+  mfan:
+    build: .
+    image: mfan:3.5
+    container_name: fan
+    volumes:
+      - ./:/usr/src/myapp
+    ports: 
+      - 7004:7004
+    command: python3 /usr/src/myapp/app.py
+    restart: always
+
+
+    
+    
+    
+# docker run -it -v .:/usr/src/myapp -p 7004:7004 python:3.5 /bin/bash
