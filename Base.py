@@ -18,7 +18,7 @@ STATIC_PATH = os.path.join(APP_PATH, 'static')
 
 def getconfig(sector,item):
     cf = configparser.ConfigParser()
-    cf.read('config.ini', encoding='utf8')  #注意setting.ini配置文件的路径
+    cf.read(os.path.join(APP_PATH,'config.ini'), encoding='utf8')  #注意ini配置文件的路径
     value = cf.get(sector, item)
     return value
 
@@ -111,7 +111,7 @@ if __name__ == '__main__':
     # print(Pager(202, 50, 4))
     # print(Pager(10, 2, 3))
     # print(Pager(10, 3, 3))
-    
+    print(os.path.join(APP_PATH,'config.ini'))
     print(getconfig('db', 'host'))
     print(getconfig('db', 'user'))
     print(getconfig('db', 'passwd'))
