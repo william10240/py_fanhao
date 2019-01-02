@@ -5,9 +5,9 @@ __author__ = 'SunCoder'
 
 import time
 from peewee import MySQLDatabase,Model,PrimaryKeyField,CharField,CharField,IntegerField
+from Base import getconfig
 
-
-db = MySQLDatabase(host='msq', user='root', passwd='helloworld', database='fanhao', charset='utf8', port=3306)
+db = MySQLDatabase(host=getconfig('db', 'host'), user=getconfig('db', 'user'), passwd=getconfig('db', 'passwd'), database=getconfig('db', 'database'), charset=getconfig('db', 'charset'), port=getconfig('db', 'port'))
 
 class BaseModel(Model):
     class Meta:

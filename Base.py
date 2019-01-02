@@ -3,6 +3,7 @@
 import  os
 import json as sjson
 from aiohttp import web
+import configparser
 #from smb.SMBConnection import SMBConnection
 
 __author__ = 'SunCoder'
@@ -10,6 +11,16 @@ __author__ = 'SunCoder'
 APP_PATH = os.path.dirname(os.path.abspath(__file__))
 PHOTO_PATH = os.path.join(APP_PATH, 'photos')
 STATIC_PATH = os.path.join(APP_PATH, 'static')
+
+"""
+读取配置文件信息
+"""
+
+def getconfig(sector,item):
+    cf = configparser.ConfigParser()
+    cf.read('config.ini', encoding='utf8')  #注意setting.ini配置文件的路径
+    value = cf.get(sector, item)
+    return value
 
 
 def json(code, msg='', data='', callback=None):
@@ -95,8 +106,15 @@ class Pager():
 
 
 if __name__ == '__main__':
-    print(Pager(202, 10, 4))
+    # print(Pager(202, 10, 4))
     # print(Pager(202, 2, 4))
     # print(Pager(202, 50, 4))
     # print(Pager(10, 2, 3))
     # print(Pager(10, 3, 3))
+    
+    print(getconfig('db', 'host'))
+    print(getconfig('db', 'user'))
+    print(getconfig('db', 'passwd'))
+    print(getconfig('db', 'database'))
+    print(getconfig('db', 'charset'))
+    print(getconfig('db', 'port'))
