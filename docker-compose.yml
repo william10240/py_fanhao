@@ -15,7 +15,7 @@ services:
     restart: always
 
   msq:
-    image: mysql:5.7.22
+    image: mysql:5.7
     volumes:
       - ./mysql/conf.d:/etc/mysql/conf.d
       - ./mysql/db:/var/lib/mysql
