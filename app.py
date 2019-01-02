@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import asyncio
+import asyncio,os
 from jinja2 import Environment, FileSystemLoader
-from Base import *
+from aiohttp import web
+from Base import getconfig,APP_PATH,PHOTO_PATH,STATIC_PATH,json,jsonres,Pager
 
 from models import fanhao, db
 import searcher
@@ -65,7 +66,7 @@ def index(request):
     allstar = fanhao.select(fanhao.star).group_by(fanhao.star)
     ps = ps.order_by(fanhao.id.desc()).paginate(pageindex, pagesize)
     pager = Pager(count, pageindex, pagesize)
-    html = render('index.html', {'allcode': allcode, 'allstar': allstar, 'ps': ps, 'requestdata': requestdata, 'pagehtml': pager.render()})
+    html = render('index.html', {'allcode': allcode, 'allstar': allstar, 'ps': ps, 'requestdata': requestdata,'dbweb':getconfig('dbweb','url'), 'pagehtml': pager.render()})
     db.close()
     return web.Response(body=bytes(html, encoding="utf-8"), content_type='text/html')
 
@@ -156,8 +157,8 @@ async def init(iloop):
     app.router.add_static('/static', STATIC_PATH)
     app.router.add_static('/photos', PHOTO_PATH)
 
-    srv = await iloop.create_server(app.make_handler(), port=7004)
-    print('system start at port http://localhost:7004...')
+    srv = await iloop.create_server(app.make_handler(),host=getconfig('web','host'), port=int(getconfig('web','port')))
+    print("system start at port http://"+getconfig('web','host')+":"+getconfig('web','port')+"...")
     return srv
 
 

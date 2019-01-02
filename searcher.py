@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import re
+import os,re
 import urllib
 from urllib import request
 from models import fanhao,db
-from Base import *
+from Base import getconfig,json,PHOTO_PATH
 
 __author__ = 'SunCoder'
 
@@ -17,9 +17,9 @@ ptImg = re.compile(r'<a class="bigImage" href="(.*?)">', re.I | re.S | re.M)
 
 
 def opener():
-    proxy_handler = request.ProxyHandler({'http': 'http://192.168.1.3:1080/','https': 'http://192.168.1.3:1080/'})
+    proxy_handler = request.ProxyHandler({'http': getconfig('proxy','http'),'https': getconfig('proxy','https')})
     topener = request.build_opener(proxy_handler)
-    opener.addheaders = [("authority", "www.javbus.com")]
+    opener.addheaders = [("authority", getconfig('dbweb','url'))]
     # opener.addheaders = [("method", "GET")]
     # opener.addheaders = [("path", "/HEYZO-0282")]
     # opener.addheaders = [("scheme", "https")]
@@ -99,7 +99,7 @@ def _saveImg(imgsrc, fname):
 
 
 def _request(fcode, tims=0):
-    url = 'https://www.javbus.com/' + fcode
+    url = 'https://'+getconfig('dbweb','url')+'/' + fcode
     try:
         res = opener().open(url, timeout=10)
         html = res.read()

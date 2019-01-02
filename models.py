@@ -7,7 +7,13 @@ import time
 from peewee import MySQLDatabase,Model,PrimaryKeyField,CharField,CharField,IntegerField
 from Base import getconfig
 
-db = MySQLDatabase(host=getconfig('db', 'host'), user=getconfig('db', 'user'), passwd=getconfig('db', 'passwd'), database=getconfig('db', 'database'), charset=getconfig('db', 'charset'), port=getconfig('db', 'port'))
+db = MySQLDatabase(host=getconfig('db', 'host'),
+                   user=getconfig('db', 'user'),
+                   passwd=getconfig('db', 'passwd'),
+                   database=getconfig('db', 'database'),
+                   charset=getconfig('db', 'charset'),
+                   port=int(getconfig('db', 'port'))
+                )
 
 class BaseModel(Model):
     class Meta:
