@@ -1,4 +1,4 @@
-FROM python:3.5-alpine
+FROM python:3.5
 
 MAINTAINER williamyan1024 williamyan1024@gmail.com
 
