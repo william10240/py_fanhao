@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os,re
+import os,re,ssl
 import urllib
 from urllib import request
 from models import fanhao,db
@@ -17,6 +17,7 @@ ptImg = re.compile(r'<a class="bigImage" href="(.*?)">', re.I | re.S | re.M)
 
 
 def opener():
+    ssl._create_default_https_context = ssl._create_unverified_context
     proxy_handler = request.ProxyHandler({'http': getconfig('proxy','http'),'https': getconfig('proxy','https')})
     topener = request.build_opener(proxy_handler)
     opener.addheaders = [("authority", getconfig('dbweb','url'))]

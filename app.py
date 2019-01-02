@@ -167,4 +167,4 @@ if __name__ == '__main__':
         web.static('/static', STATIC_PATH),
         web.static('/photos', PHOTO_PATH)
         ])
-    web.run_app(app,host=getconfig('web','host'), port=getconfig('web','port'))
+    web.run_app(app,port=getconfig('web','port'))
