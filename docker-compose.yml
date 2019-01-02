@@ -2,18 +2,6 @@
 version: '2'
 
 services:
-  mfan:
-    build: .
-    image: mfan:3.5-alpine
-    volumes:
-      - ./:/usr/src/myapp
-    ports: 
-      - 7004:7004
-    command: python3 /usr/src/myapp/app.py
-    depends_on:
-      - msq
-    restart: always
-
   msq:
     image: mysql:5.7
     volumes:
@@ -26,6 +14,19 @@ services:
       - MYSQL_ROOT_PASSWORD=helloworld
       - MYSQL_DATABASE=fanhao
     restart: always
+
+  mfan:
+    build: .
+    image: mfan:3.5
+    volumes:
+      - ./:/usr/src/myapp
+    ports: 
+      - 7004:7004
+    command: python3 /usr/src/myapp/app.py
+    depends_on:
+      - msq
+    restart: always
+
     
     
     

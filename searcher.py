@@ -101,7 +101,7 @@ def _saveImg(imgsrc, fname):
 def _request(fcode, tims=0):
     url = 'https://'+getconfig('dbweb','url')+'/' + fcode
     try:
-        res = opener().open(url, timeout=10)
+        res = opener().open(url, timeout=20)
         html = res.read()
     except Exception as e:
         return json(-1, '网络错误:' + str(e))
