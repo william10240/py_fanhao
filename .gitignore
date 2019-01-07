@@ -2,5 +2,3 @@
 /__pycache__/
 /backup/*
 !/backup/createtable.sql
-fanhao.db
-mysql
