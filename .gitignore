@@ -3,3 +3,4 @@
 /backup/*
 !/backup/createtable.sql
 fanhao.db
+mysql

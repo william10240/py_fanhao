@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import asyncio
+import asyncio,os
 from jinja2 import Environment, FileSystemLoader
-from Base import *
+from aiohttp import web
+from Base import getconfig,APP_PATH,PHOTO_PATH,STATIC_PATH,json,jsonres,Pager
 
 from models import fanhao, db
 import searcher
@@ -65,7 +66,7 @@ def index(request):
     allstar = fanhao.select(fanhao.star).group_by(fanhao.star)
     ps = ps.order_by(fanhao.id.desc()).paginate(pageindex, pagesize)
     pager = Pager(count, pageindex, pagesize)
-    html = render('index.html', {'allcode': allcode, 'allstar': allstar, 'ps': ps, 'requestdata': requestdata, 'pagehtml': pager.render()})
+    html = render('index.html', {'allcode': allcode, 'allstar': allstar, 'ps': ps, 'requestdata': requestdata,'dbweb':getconfig('dbweb','url'), 'pagehtml': pager.render()})
     db.close()
     return web.Response(body=bytes(html, encoding="utf-8"), content_type='text/html')
 
@@ -146,21 +147,6 @@ def deimg(request):
         pass
 
 
-async def init(iloop):
-    app = web.Application(loop=iloop, debug=True)
-    app.router.add_route('*', '/', index)
-    app.router.add_route('*', '/search', search)
-    app.router.add_route('*', '/recode', recode)
-    app.router.add_route('*', '/deimg', deimg)
-    app.router.add_route('GET', '/set/{type}/{id}/{val}', set)
-    app.router.add_static('/static', STATIC_PATH)
-    app.router.add_static('/photos', PHOTO_PATH)
-
-    srv = await iloop.create_server(app.make_handler(), port=7004)
-    print('system start at port http://localhost:7004...')
-    return srv
-
-
 def initsys():
     if not os.path.exists(PHOTO_PATH):
         os.mkdir(PHOTO_PATH)
@@ -171,6 +157,14 @@ def initsys():
 
 if __name__ == '__main__':
     initsys()
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(init(loop))
-    loop.run_forever()
+    app = web.Application(debug=True)
+    app.add_routes([
+        web.route("*",'/', index),
+        web.route("*",'/search', search),
+        web.route("*",'/recode', recode),
+        web.route("*",'/deimg', deimg),
+        web.route("GET",'/set/{type}/{id}/{val}', set),
+        web.static('/static', STATIC_PATH),
+        web.static('/photos', PHOTO_PATH)
+        ])
+    web.run_app(app,port=getconfig('web','port'))

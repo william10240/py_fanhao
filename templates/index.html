@@ -3,7 +3,7 @@
 {% endblock %}
 {% block content %}
     <!--筛选&搜索-->
-    <div>
+    <header>
         <form method="get" id="fm" class="btn-group" style="margin-bottom: 15px;">
             <select class="btn btn-default" name="downed" title="downed">
                 <option value="">全部</option>
@@ -35,21 +35,21 @@
                 <button class="btn btn-default" type="submit" id="search">Search !</button>
             </span>
         </form>
-    </div>
+    </header>
 
-    <div class="text-center">{{ pagehtml }}</div>
+    <pager class="text-center">{{ pagehtml }}</pager>
 
-    <div class="uk-grid" data-uk-grid-margin>
+    <content class="uk-grid" data-uk-grid-margin>
         {% for p in ps %}
             <div class="uk-width-small-1-1 uk-width-medium-1-2 uk-width-large-1-3">
                 <div id="col-{{ p.id }}" class="thumbnail">
                     <div class="caption text-center">
                         <div class="text-left">
-                            <a href="https://www.javbus.info/{{ p.code }}" target="_blank" style="color: #333333;">{{ p.code }}</a>
+                            <a href="https://{{dbweb}}/{{ p.code }}" target="_blank" style="color: #333333;">{{ p.code }}</a>
                             {% if p.starcode %}
-                                (<a href="https://www.javbus.info/star/{{ p.starcode }}" target="_blank" style="color: #333333;" id="star-{{ p.id }}">{{ p.star }}</a>)
+                                (<a href="https://{{dbweb}}/star/{{ p.starcode }}" target="_blank" style="color: #333333;" id="star-{{ p.id }}">{{ p.star }}</a>)
                             {% else %}
-                                (<a href="https://www.javbus.info/star/{{ p.starcode }}" target="_blank" style="color: #ff0000;" id="star-{{ p.id }}">{{ p.star }}</a>)
+                                (<a href="https://{{dbweb}}/star/{{ p.starcode }}" target="_blank" style="color: #ff0000;" id="star-{{ p.id }}">{{ p.star }}</a>)
                             {% endif %}
                         </div>
                         <div class="pull-left">
@@ -76,7 +76,7 @@
                             <a href="javascript:" class="btn btn-success btn-xs" onclick="reimg('{{ p.id }}','{{ p.code }}')">更新信息</a>
                         </div>
                     </div>
-                    <a href="https://www.javbus.info/{{ p.code }}" target="_blank"><img id="pic-{{ p.id }}" src="./photos/{{ p.fname }}"/></a>
+                    <a href="https://{{dbweb}}/{{ p.code }}" target="_blank"><img id="pic-{{ p.id }}" src="./photos/{{ p.fname }}"/></a>
                     <div class="caption">
                         <a href="javascript:" class="btn btn-success btn-xs pull-right" onclick="deimg('{{ p.id }}')">删除</a>
                         <span id="star" class="level">
@@ -91,9 +91,9 @@
                 </div>
             </div>
         {% endfor %}
-    </div>
+    </content>
 
-    <div class="text-center">{{ pagehtml }}</div>
+    <pager class="text-center">{{ pagehtml }}</pager>
 {% endblock %}
 {% block script %}
     <script type="text/javascript" src="static/plugin/bootstrap/js/bootstrap.min.js"></script>
@@ -104,7 +104,7 @@
     <style type="text/css">
         input, select, button { height: 32px; }
         .level { display: inline-block; height: 15px; }
-        .level * { float: left; display: inline-block; width: 15px; height: 15px; line-height: 15px; margin-right: 4px; cursor: pointer; vertical-align: middle; text-align: center; }
+        .level * { float: left; width: 15px; height: 15px; line-height: 15px; margin-right: 4px; cursor: pointer; vertical-align: middle; text-align: center; }
         .level_solid, .level_hollow { background-image: url('static/images/icon2.png'); background-repeat: no-repeat; }
         .level_solid { background-position: 0 0; }
         .level_hollow { background-position: -21px 0; }

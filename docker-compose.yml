@@ -1,0 +1,28 @@
+
+version: '2'
+
+services:
+  msq:
+    image: mysql:5.7
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/db:/var/lib/mysql
+    # ports: 
+    #   - 3306:3306
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      - MYSQL_ROOT_PASSWORD=helloworld
+      - MYSQL_DATABASE=fanhao
+    restart: always
+
+  mfan:
+    build: ./conf.d
+    image: mfan:3.5
+    volumes:
+      - ./:/usr/src/myapp
+    ports: 
+      - 81:80
+    command: python3 /usr/src/myapp/app.py
+    depends_on:
+      - msq
+    restart: always
