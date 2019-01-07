@@ -2,7 +2,7 @@
 	<h1 align="center">番械库</h1>
 	<h3 align="center">私人番号收藏</h3>
 	<p align="center">
-		<a href="http://www.suncoder.cn" target="_blank"><strong>Visit Suncoder &raquo;</strong></a>
+		<a href="http://www.williamyan.cn" target="_blank"><strong>Visit Suncoder &raquo;</strong></a>
 	</p>
 </p>
 
@@ -17,6 +17,10 @@
 
 ## 使用方式1:docker部署
 根目录下有docker-compose文件,直接"docker-compose up"
+
+mysql数据会存在 ~/fanhaodb 目录中,在docker-compose.yml中可修改
+
+启动后默认端口是81,在docker-compose.yml中可修改
 ## 使用方法2:自助部署
 准备好mysql数据库,名称"fanhao",在config.ini中配置数据库连接信息
 
