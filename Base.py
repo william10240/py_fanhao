@@ -18,7 +18,7 @@ STATIC_PATH = os.path.join(APP_PATH, 'static')
 
 def getconfig(sector,item):
     cf = configparser.ConfigParser()
-    cf.read(os.path.join(APP_PATH,'config.ini'), encoding='utf8')  #注意ini配置文件的路径
+    cf.read(os.path.join(APP_PATH,'conf.d','config.ini'), encoding='utf8')  #注意ini配置文件的路径
     value = cf.get(sector, item)
     return value
 

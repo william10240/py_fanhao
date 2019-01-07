@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os,re,ssl
+import os,re,ssl,logging
 import urllib
 from urllib import request
 from models import fanhao,db
@@ -9,12 +9,13 @@ from Base import getconfig,json,PHOTO_PATH
 
 __author__ = 'SunCoder'
 
+logging.basicConfig(format='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s',level=logging.INFO)
+
 ptCode = re.compile(r'<span class="header">識別碼:</span>.*?<span style="color:#CC0000;">(.*?)</span>', re.I | re.S | re.M)
 psTitle = re.compile(r'<h3>(.*?)</h3>', re.I | re.S | re.M)
 psStarCode = re.compile(r'<div class="star-name"><a href="https://www.javbus.*?star/(.*?)" title=".*?">.*?</a></div>', re.I | re.S | re.M)
 psStar = re.compile(r'<div class="star-name"><a href="https://www.javbus.*?star/.*?" title=".*?">(.*?)</a></div>', re.I | re.S | re.M)
 ptImg = re.compile(r'<a class="bigImage" href="(.*?)">', re.I | re.S | re.M)
-
 
 def opener():
     ssl._create_default_https_context = ssl._create_unverified_context
@@ -101,6 +102,7 @@ def _saveImg(imgsrc, fname):
 
 def _request(fcode, tims=0):
     url = 'https://'+getconfig('dbweb','url')+'/' + fcode
+    logging.info("request:"+url)
     try:
         res = opener().open(url, timeout=20)
         html = res.read()

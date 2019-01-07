@@ -1,6 +1,6 @@
 FROM python:3.5
 
-MAINTAINER williamyan1024 williamyan1024@gmail.com
+LABEL maintainer="williamyan1024@gmail.com"
 
 RUN pip install --no-cache-dir --upgrade --ignore-installed \
 	aiohttp==3.4.1 \
