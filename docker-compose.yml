@@ -21,7 +21,7 @@ services:
     volumes:
       - ./:/usr/src/myapp
     ports: 
-      - 81:80
+      - 81:81
     command: python3 /usr/src/myapp/app.py
     depends_on:
       - msq

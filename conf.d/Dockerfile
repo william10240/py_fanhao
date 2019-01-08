@@ -21,7 +21,7 @@ RUN pip install --no-cache-dir --upgrade --ignore-installed \
 	# pycparser==2.18 \
 	# six==1.11.0
 
-EXPOSE 7004
+EXPOSE 81
 
 CMD ["python3"]
 
