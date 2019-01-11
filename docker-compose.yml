@@ -20,9 +20,20 @@ services:
     image: mfan:3.5
     volumes:
       - ./:/app
-    ports: 
-      - 81:81
+    # ports: 
+    #   - 81:81
     command: python3 /app/app.py
     depends_on:
       - msq
+    restart: always
+
+  ngx:
+    image: nginx:1.14.0-alpine
+    ports:
+      - 81:81
+    volumes:
+      - ./conf.d/:/etc/nginx/conf.d
+      - ./:/usr/share/nginx/html
+    depends_on:
+      - mfan
     restart: always

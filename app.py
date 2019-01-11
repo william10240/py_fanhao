@@ -23,7 +23,7 @@ def render(tempname, *args, **kwargs):
 
 
 @routes.get('/')
-def index(request):
+async def index(request):
     requestdata = {}
     pageindex = 1
     if 'pageindex' in request.query:
@@ -72,7 +72,7 @@ def index(request):
 
 
 @routes.get('/search')
-def search(request):
+async def search(request):
     if 'xcode' not in request.query:
         return jsonres(0)
     xcode = request.query['xcode']
@@ -82,7 +82,7 @@ def search(request):
     except fanhao.DoesNotExist:
         pass
 
-    res = searcher.getinfo(xcode)
+    res = await searcher.getinfo(xcode)
     if res['code'] == 0:
         return jsonres(0, '获取成功', res['data'])
     elif res['code'] == -4 or res['code'] == -5:
@@ -92,12 +92,12 @@ def search(request):
 
 
 @routes.get('/recode')
-def recode(request):
+async def recode(request):
     if 'xcode' not in request.query:
         return jsonres(-1, 'xcode err')
     xcode = request.query['xcode']
 
-    res = searcher.getinfo(xcode, True)
+    res = await searcher.getinfo(xcode, True)
     if res['code'] == 0:
         return jsonres(0, '重新获取成功', res['data'])
     else:
@@ -105,7 +105,7 @@ def recode(request):
 
 
 @routes.get('/set/{type}/{id}/{val}')
-def set(request):
+async def set(request):
     type = request.match_info.get('type')
     id = request.match_info.get('id')
     val = request.match_info.get('val')
@@ -129,7 +129,7 @@ def set(request):
 
 
 @routes.get('/deimg')
-def deimg(request):
+async def deimg(request):
 
     if 'pid' not in request.query:
         return jsonres(-1, 'pid err')

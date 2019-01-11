@@ -32,7 +32,7 @@ def opener():
     return topener
 
 
-def getinfo(fcode, onlyimg=False):
+async def getinfo(fcode, onlyimg=False):
     if not fcode:
         return json(-1, '番号不正确')
     # 解析番号
@@ -42,7 +42,7 @@ def getinfo(fcode, onlyimg=False):
         if not match:
             return json(-1, '番号不正确')
     # 获取信息
-    res = _request(fcode)
+    res = await _request(fcode)
     if res['code'] != 0:
         return json(-1, '番号信息获取失败:' + res['msg'])
     resdata = res['data']
@@ -100,7 +100,7 @@ def _saveImg(imgsrc, fname):
     return json(0, '保存成功')
 
 
-def _request(fcode, tims=0):
+async def _request(fcode, tims=0):
     url = 'https://'+getconfig('dbweb','url')+'/' + fcode
     logging.info("request:"+url)
     try:

@@ -24,7 +24,8 @@ mysql数据会存在 ~/fanhaodb 目录中,在docker-compose.yml中可修改
 ## 部署方法2:手动
 数据库使用MySQL,backup目录中有建库脚本,在conf.d/config.ini中配置数据库连接信息
 
-运行 app.py，然后访问 <http://127.0.0.1/>
+运行 app.py，然后访问 <http://127.0.0.1:81/>
+启动后默认端口是81,在conf.d/config.ini中可修改
 
 ## 使用
 确保本地小飞机软件已打开,端口设置为10086(具体方法请绅士),在conf.d/config.ini中可配置代理连接信息
