@@ -19,10 +19,10 @@ services:
     build: ./conf.d
     image: mfan:3.5
     volumes:
-      - ./:/usr/src/myapp
+      - ./:/app
     ports: 
       - 81:81
-    command: python3 /usr/src/myapp/app.py
+    command: python3 /app/app.py
     depends_on:
       - msq
     restart: always
