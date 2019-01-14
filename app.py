@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import asyncio,os
-from jinja2 import Environment, FileSystemLoader
-from aiohttp import web
-from Base import getconfig,APP_PATH,PHOTO_PATH,STATIC_PATH,json,jsonres,Pager
+import asyncio
+import logging;logging.basicConfig(format='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s',level=logging.INFO)
+import os
+import shutil
 
-from models import fanhao, db
+from aiohttp import web
+from jinja2 import Environment, FileSystemLoader
+
 import searcher
+from Base import (APP_PATH, PHOTO_PATH, STATIC_PATH, Pager, getconfig, json,
+                  jsonres)
+from models import db, fanhao
 
 routes = web.RouteTableDef()
 
@@ -153,9 +158,11 @@ def initsys():
     if not fanhao.table_exists():
         fanhao.create_table()
     db.close()
+    print(os.path.exists('conf.d/config.ini'))
 
 
 if __name__ == '__main__':
+
     initsys()
     app = web.Application(debug=True)
     app.add_routes([

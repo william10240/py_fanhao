@@ -4,16 +4,21 @@
 __author__ = 'SunCoder'
 
 import time
-from peewee import MySQLDatabase,Model,PrimaryKeyField,CharField,CharField,IntegerField
+from peewee import Model,PrimaryKeyField,CharField,CharField,IntegerField
 from Base import getconfig
 
-db = MySQLDatabase(host=getconfig('db', 'host'),
-                   user=getconfig('db', 'user'),
-                   passwd=getconfig('db', 'passwd'),
-                   database=getconfig('db', 'database'),
-                   charset=getconfig('db', 'charset'),
-                   port=int(getconfig('db', 'port'))
-                )
+# from peewee import MySQLDatabase
+# db = SqliteDatabase(host=getconfig('db', 'host'),
+#                    user=getconfig('db', 'user'),
+#                    passwd=getconfig('db', 'passwd'),
+#                    database=getconfig('db', 'database'),
+#                    charset=getconfig('db', 'charset'),
+#                    port=int(getconfig('db', 'port'))
+#                 )
+
+from peewee import SqliteDatabase
+db = SqliteDatabase('fan.db')
+
 
 class BaseModel(Model):
     class Meta:

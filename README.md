@@ -18,12 +18,8 @@
 ## 部署方式1:docker
 根目录下有docker-compose文件,直接"docker-compose up"
 
-mysql数据会存在 ~/fanhaodb 目录中,在docker-compose.yml中可修改
-
 启动后默认端口是81,在docker-compose.yml中可修改
 ## 部署方法2:手动
-数据库使用MySQL,backup目录中有建库脚本,在conf.d/config.ini中配置数据库连接信息
-
 运行 app.py，然后访问 <http://127.0.0.1:81/>
 启动后默认端口是81,在conf.d/config.ini中可修改
 
@@ -39,6 +35,7 @@ mysql数据会存在 ~/fanhaodb 目录中,在docker-compose.yml中可修改
 	3.dbweb地址可能会更换,使用浏览器打开dbweb网址看是否能访问,如果还不能访问请发issue,题主会定期更换
 ## 技术参考
 > 系统使用 [python3](https://www.python.org/downloads/) 编写，需要用到的组件有 request, aiohttp, peewee, jinja2
+数据库使用sqlite,保存在根目录 "fan.db" 中
 
 ### license
 > 本作品仅供学习交流使用，对使用后产生的任何后果不承担任何责任; 前方净空,允许进入,祝君武运昌隆
@@ -46,6 +43,6 @@ mysql数据会存在 ~/fanhaodb 目录中,在docker-compose.yml中可修改
 ### todo:
 > ~~配置项集中到配置文件~~
 >
-> 集成sqlite存储方式
+> ~~换用sqlite存储方式~~
 >
 > 自动化初始脚本

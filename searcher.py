@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os,re,ssl,logging
+import logging;logging.basicConfig(format='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s',level=logging.INFO)
+import os
+import re
+import ssl
 import urllib
 from urllib import request
-from models import fanhao,db
-from Base import getconfig,json,PHOTO_PATH
+
+from Base import PHOTO_PATH, getconfig, json
+from models import db, fanhao
 
 __author__ = 'SunCoder'
 
-logging.basicConfig(format='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s',level=logging.INFO)
 
 ptCode = re.compile(r'<span class="header">識別碼:</span>.*?<span style="color:#CC0000;">(.*?)</span>', re.I | re.S | re.M)
 psTitle = re.compile(r'<h3>(.*?)</h3>', re.I | re.S | re.M)

@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import  os
-import json as sjson
-from aiohttp import web
 import configparser
+import json as sjson
+import os,shutil,logging
+
+from aiohttp import web
+
 #from smb.SMBConnection import SMBConnection
 
 __author__ = 'SunCoder'
@@ -12,11 +14,15 @@ APP_PATH = os.path.dirname(os.path.abspath(__file__))
 PHOTO_PATH = os.path.join(APP_PATH, 'photos')
 STATIC_PATH = os.path.join(APP_PATH, 'static')
 
+
 """
 读取配置文件信息
 """
 
 def getconfig(sector,item):
+    if not os.path.exists('conf.d/config.ini'):
+        shutil.copyfile('conf.d/config.ini.base','conf.d/config.ini')
+        logging.info("con`t find conf.ini, use the default config")
     cf = configparser.ConfigParser()
     cf.read(os.path.join(APP_PATH,'conf.d','config.ini'), encoding='utf8')  #注意ini配置文件的路径
     value = cf.get(sector, item)

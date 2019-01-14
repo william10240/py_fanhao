@@ -1,0 +1,25 @@
+[web]
+# 手动部署需要修改,docker部署请修改 docker-compose.yml
+port=81
+
+# 使用sqlite数据库,暂时弃用,以后看看
+#[db]
+#host=msq
+## 手动部署需要修改
+#user=root
+#passwd=helloworld
+#database=fanhao
+#charset=utf8
+#port=3306
+
+[proxy]
+# 确保运行次程序的环境能访问如下链接
+http = http://host.docker.internal:10086/
+https = http://host.docker.internal:10086/
+
+
+[dbweb]
+# 以下有多个可用地址,不行就换一个
+url = www.javbus.com
+#url = www.javbus.info
+# ....
