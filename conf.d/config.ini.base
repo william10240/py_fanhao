@@ -14,7 +14,7 @@ port=81
 
 [proxy]
 # 确保运行次程序的环境能访问如下链接
-http = http://host.docker.internal:10086/
+http  = http://host.docker.internal:10086/
 https = http://host.docker.internal:10086/
 
 
