@@ -14,17 +14,20 @@ APP_PATH = os.path.dirname(os.path.abspath(__file__))
 PHOTO_PATH = os.path.join(APP_PATH, 'photos')
 STATIC_PATH = os.path.join(APP_PATH, 'static')
 
+CONFIGBASE = os.path.join(APP_PATH, 'conf.d/config.ini.base')
+CONFIG = os.path.join(APP_PATH, 'conf.d/config.ini')
+
 
 """
 读取配置文件信息
 """
 
 def getconfig(sector,item):
-    if not os.path.exists('conf.d/config.ini'):
-        shutil.copyfile('conf.d/config.ini.base','conf.d/config.ini')
+    if not os.path.exists(CONFIG):
+        shutil.copyfile(CONFIGBASE, CONFIG)
         logging.info("con`t find conf.ini, use the default config")
     cf = configparser.ConfigParser()
-    cf.read(os.path.join(APP_PATH,'conf.d','config.ini'), encoding='utf8')  #注意ini配置文件的路径
+    cf.read(CONFIG, encoding='utf8')  # 注意ini配置文件的路径
     value = cf.get(sector, item)
     return value
 
