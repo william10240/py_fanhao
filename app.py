@@ -29,14 +29,15 @@ def render(tempname, *args, **kwargs):
 
 @routes.get('/')
 async def index(request):
+    print(request.query)
     requestdata = {}
     pageindex = 1
-    if 'pageindex' in request.query:
+    if 'pageindex' in request.query and request.query['pageindex']:
         pageindex = int(request.query['pageindex'])
     requestdata['pageindex'] = pageindex
 
     pagesize = 15
-    if 'pagesize' in request.query:
+    if 'pagesize' in request.query and request.query['pagesize']:
         pagesize = int(request.query['pagesize'])
     requestdata['pagesize'] = pagesize
 
