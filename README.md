@@ -49,7 +49,3 @@
 > ~~换用sqlite存储方式~~
 >
 > 自动化初始脚本
-
-# 预览
-
-![iamge](https://raw.githubusercontent.com/williamyan1024/img/master/py_fanhao1.png)
