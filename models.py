@@ -3,9 +3,9 @@
 
 __author__ = 'SunCoder'
 
-import time
+import time,os
 from peewee import Model,PrimaryKeyField,CharField,CharField,IntegerField
-from Base import getconfig
+from Base import getconfig, APP_PATH
 
 # from peewee import MySQLDatabase
 # db = SqliteDatabase(host=getconfig('db', 'host'),
@@ -17,7 +17,7 @@ from Base import getconfig
 #                 )
 
 from peewee import SqliteDatabase
-db = SqliteDatabase('fan.db')
+db = SqliteDatabase(os.path.join(APP_PATH, 'fan.db'))
 
 
 class BaseModel(Model):

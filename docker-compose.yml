@@ -20,6 +20,7 @@ services:
     image: mfan:3.5
     volumes:
       - ./:/app
+    working_dir: /app
     # ports: 
     #   - 81:81
     command: python3 /app/app.py
