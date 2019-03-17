@@ -24,13 +24,13 @@ def opener():
     ssl._create_default_https_context = ssl._create_unverified_context
     proxy_handler = request.ProxyHandler({'http': getconfig('proxy','http'),'https': getconfig('proxy','https')})
     topener = request.build_opener(proxy_handler)
-    opener.addheaders = [("authority", getconfig('dbweb','url'))]
-    # opener.addheaders = [("method", "GET")]
-    # opener.addheaders = [("path", "/HEYZO-0282")]
-    # opener.addheaders = [("scheme", "https")]
-    # opener.addheaders = [("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")]
-    # opener.addheaders = [("dnt", "1")]
-    # opener.addheaders = [("upgrade-insecure-requests", "1")]
+    topener.addheaders = [("authority", getconfig('dbweb', 'url'))]
+    # topener.addheaders = [("method", "GET")]
+    # topener.addheaders = [("path", "/HEYZO-0282")]
+    # topener.addheaders = [("scheme", "https")]
+    # topener.addheaders = [("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")]
+    # topener.addheaders = [("dnt", "1")]
+    # topener.addheaders = [("upgrade-insecure-requests", "1")]
     topener.addheaders = [("user-agent", "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36")]
     return topener
 
