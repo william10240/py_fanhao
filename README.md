@@ -31,6 +31,8 @@
 
 在出现的页面右上角输入框内输入番号代码(类似XXX-123),点击 Search !
 
+在 conf.d/config.ini 的 "proxy" 里 "enable" 为true表示使用代理,false表示不使用代理
+
 ## 问题处理
  获取番号信息时报错,
 ```

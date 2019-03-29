@@ -22,8 +22,11 @@ ptImg = re.compile(r'<a class="bigImage" href="(.*?)">', re.I | re.S | re.M)
 
 def opener():
     ssl._create_default_https_context = ssl._create_unverified_context
-    proxy_handler = request.ProxyHandler({'http': getconfig('proxy','http'),'https': getconfig('proxy','https')})
-    topener = request.build_opener(proxy_handler)
+    if getconfig('proxy','http') == True:
+        proxy_handler = request.ProxyHandler({'http': getconfig('proxy','http'),'https': getconfig('proxy','https')})
+        topener = request.build_opener(proxy_handler)
+    else:
+        topener = request.build_opener()
     topener.addheaders = [("authority", getconfig('dbweb', 'url'))]
     # topener.addheaders = [("method", "GET")]
     # topener.addheaders = [("path", "/HEYZO-0282")]
