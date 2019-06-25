@@ -22,10 +22,12 @@ ptImg = re.compile(r'<a class="bigImage" href="(.*?)">', re.I | re.S | re.M)
 
 def opener():
     ssl._create_default_https_context = ssl._create_unverified_context
-    if getconfig('proxy','http') == True:
+    if getconfig('proxy', 'enable') == "true":
+        logging.info('use proxy'+getconfig('proxy', 'http'))
         proxy_handler = request.ProxyHandler({'http': getconfig('proxy','http'),'https': getconfig('proxy','https')})
         topener = request.build_opener(proxy_handler)
     else:
+        logging.info('not use proxy')
         topener = request.build_opener()
     topener.addheaders = [("authority", getconfig('dbweb', 'url'))]
     # topener.addheaders = [("method", "GET")]
@@ -38,7 +40,7 @@ def opener():
     return topener
 
 
-async def getinfo(fcode, onlyimg=False):
+def getinfo(fcode, onlyimg=False):
     if not fcode:
         return json(-1, '番号不正确')
     # 解析番号
@@ -48,7 +50,7 @@ async def getinfo(fcode, onlyimg=False):
         if not match:
             return json(-1, '番号不正确')
     # 获取信息
-    res = await _request(fcode)
+    res = _request(fcode)
     if res['code'] != 0:
         return json(-1, '番号信息获取失败:' + res['msg'])
     resdata = res['data']
@@ -106,7 +108,7 @@ def _saveImg(imgsrc, fname):
     return json(0, '保存成功')
 
 
-async def _request(fcode, tims=0):
+def _request(fcode, tims=0):
     url = 'https://'+getconfig('dbweb','url')+'/' + fcode
     logging.info("request:"+url)
     try:

@@ -14,7 +14,7 @@ port=27004
 
 [proxy]
 # 确保运行次程序的环境能访问如下链接
-# 是否启用代理
+# 是否启用代理 true,false
 enable = false
 http  = http://host.docker.internal:10086/
 https = http://host.docker.internal:10086/
