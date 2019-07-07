@@ -26,5 +26,5 @@ services:
       - ./images/:/etc/nginx/conf.d
       - ./:/usr/share/nginx/html
     depends_on:
-      - mfans
+      - mfan
     restart: always
