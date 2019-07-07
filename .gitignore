@@ -5,3 +5,4 @@
 !/backup/createtable.sql
 conf.d/config.ini
 fan.db
+conf.d/shadowsocks.json

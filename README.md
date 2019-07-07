@@ -36,6 +36,18 @@
 ## SS代理设置
 
 在 conf.d/shadowsocks.json
+```
+{
+    "server": "xxxxxxxxxx",
+    "server_port": xxxxxxxxxx,
+    "local_address": "127.0.0.1",
+    "local_port": 1080,
+    "password": "xxxxxxxxxx",
+    "timeout": 600,
+    "method": "chacha20-ietf-poly1305",
+    "fast_open": false
+}
+```
 
 ## 问题处理
  获取番号信息时报错,
