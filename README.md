@@ -23,7 +23,7 @@
 
 启动后默认端口是81,在docker-compose.yml中可修改
 ## 部署方法2:手动
-运行 app.py，然后访问 <http://127.0.0.1:81/>
+运行 app.py，然后访问 <http://127.0.0.1:27004/>
 启动后默认端口是81,在conf.d/config.ini中可修改
 
 ## 使用
@@ -32,6 +32,10 @@
 在出现的页面右上角输入框内输入番号代码(类似XXX-123),点击 Search !
 
 在 conf.d/config.ini 的 "proxy" 里 "enable" 为true表示使用代理,false表示不使用代理
+
+## SS代理设置
+
+在 conf.d/shadowsocks.json
 
 ## 问题处理
  获取番号信息时报错,

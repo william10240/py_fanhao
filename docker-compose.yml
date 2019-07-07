@@ -3,10 +3,10 @@ version: '2'
 
 services:
 
-  mfans:
+  mfan:
     build: ./images
-    image: mfans:3.5
-    container_name: mfans
+    image: mfan:3.5
+    container_name: mfan
     volumes:
       - ./:/app
       - ./conf.d/polipo.conf:/etc/polipo/config
@@ -19,7 +19,7 @@ services:
 
   ngx:
     image: nginx:1.14.0-alpine
-    container_name: mfans_ngx
+    container_name: mfan_ngx
     ports:
       - 27004:27004
     volumes:
