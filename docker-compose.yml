@@ -12,7 +12,7 @@ services:
       - ./conf.d/polipo.conf:/etc/polipo/config
       
     working_dir: /app
-    ports: 
+#    ports: 
 #      - 88:27004
     command: "/run/start.sh"
     restart: always
