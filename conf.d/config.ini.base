@@ -16,8 +16,8 @@ port=27004
 # 确保运行次程序的环境能访问如下链接
 # 是否启用代理 true,false
 enable = false
-http  = http://host.docker.internal:10086/
-https = http://host.docker.internal:10086/
+http  = http://127.0.0.1:8123/
+https = http://127.0.0.1:8123/
 
 
 [dbweb]
