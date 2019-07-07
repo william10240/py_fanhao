@@ -13,7 +13,7 @@ services:
       
     working_dir: /app
     ports: 
-      - 88:27004
+#      - 88:27004
     command: "/run/start.sh"
     restart: always
 

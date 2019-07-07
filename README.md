@@ -18,6 +18,11 @@
 ## 注意事项
 根目录下"fan.db"文件为数据库文件,请注意存档备份;如有需要后续会推出自动备份功能
 
+## 1编辑配置文件
+首次运行前,从 conf.d/config.ini.base 拷贝一份 命名为 config.ini
+在 conf.d/config.ini 的 "proxy" 里 "enable" 为true表示使用代理,false表示不使用代理
+
+
 ## 部署方式1:docker
 编辑 conf.d/shadowsocks.json 文件,增加并修改如下内容
 ```
@@ -44,7 +49,6 @@
 
 在出现的页面右上角输入框内输入番号代码(类似XXX-123),点击 Search !
 
-在 conf.d/config.ini 的 "proxy" 里 "enable" 为true表示使用代理,false表示不使用代理
 
 运行 app.py，然后访问 <http://127.0.0.1:27004/>
 启动后默认端口是81,在conf.d/config.ini中可修改
