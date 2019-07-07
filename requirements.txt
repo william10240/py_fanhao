@@ -1,5 +1,5 @@
 MarkupSafe==1.0
-jinja2==2.10
+jinja2==2.10.1
 
 aiohttp==3.4.1
 async-timeout==3.0.0

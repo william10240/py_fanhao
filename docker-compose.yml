@@ -2,39 +2,29 @@
 version: '2'
 
 services:
-  # msq:
-  #   image: mysql:5.7
-  #   volumes:
-  #     - ./mysql/conf.d:/etc/mysql/conf.d
-  #     - ~/fanhaodb:/var/lib/mysql
-  #   # ports: 
-  #   #   - 3306:3306
-  #   command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-  #   environment:
-  #     - MYSQL_ROOT_PASSWORD=helloworld
-  #     - MYSQL_DATABASE=fanhao
-  #   restart: always
 
-  mfan:
-    build: ./conf.d
-    image: mfan:3.5
+  mfans:
+    build: ./images
+    image: mfans:3.5
+    container_name: mfans
     volumes:
       - ./:/app
+      - ./conf.d/polipo.conf:/etc/polipo/config
+      
     working_dir: /app
-    # ports: 
-    #   - 81:81
-    command: python3 /app/app.py
-    # depends_on:
-    #   - msq
+    ports: 
+      - 88:27004
+    command: "/run/start.sh"
     restart: always
 
   ngx:
     image: nginx:1.14.0-alpine
+    container_name: mfans_ngx
     ports:
       - 27004:27004
     volumes:
-      - ./conf.d/:/etc/nginx/conf.d
+      - ./images/:/etc/nginx/conf.d
       - ./:/usr/share/nginx/html
     depends_on:
-      - mfan
+      - mfans
     restart: always
