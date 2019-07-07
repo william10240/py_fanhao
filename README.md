@@ -19,23 +19,7 @@
 根目录下"fan.db"文件为数据库文件,请注意存档备份;如有需要后续会推出自动备份功能
 
 ## 部署方式1:docker
-根目录下有docker-compose文件,直接"docker-compose up"
-
-启动后默认端口是81,在docker-compose.yml中可修改
-## 部署方法2:手动
-运行 app.py，然后访问 <http://127.0.0.1:27004/>
-启动后默认端口是81,在conf.d/config.ini中可修改
-
-## 使用
-确保本地小飞机软件已打开,端口设置为10086(具体方法请绅士),在conf.d/config.ini中可配置代理连接信息
-
-在出现的页面右上角输入框内输入番号代码(类似XXX-123),点击 Search !
-
-在 conf.d/config.ini 的 "proxy" 里 "enable" 为true表示使用代理,false表示不使用代理
-
-## SS代理设置,仅docker方式部署支持
-
-在 conf.d/shadowsocks.json
+编辑 conf.d/shadowsocks.json 文件,增加并修改如下内容
 ```
 {
     "server": "xxxxxxxxxx",
@@ -48,6 +32,24 @@
     "fast_open": false
 }
 ```
+根目录下有docker-compose文件,直接"docker-compose up"
+
+启动后默认端口是27004,在docker-compose.yml中可修改
+
+启动后 <http://127.0.0.1:27004/> 访问
+
+
+## 部署方法2:手动
+确保本地小飞机软件已打开,端口设置为10086(具体方法请绅士),在conf.d/config.ini中可配置代理连接信息
+
+在出现的页面右上角输入框内输入番号代码(类似XXX-123),点击 Search !
+
+在 conf.d/config.ini 的 "proxy" 里 "enable" 为true表示使用代理,false表示不使用代理
+
+运行 app.py，然后访问 <http://127.0.0.1:27004/>
+启动后默认端口是81,在conf.d/config.ini中可修改
+
+
 
 ## 问题处理
  获取番号信息时报错,
