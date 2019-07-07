@@ -33,7 +33,7 @@
 
 在 conf.d/config.ini 的 "proxy" 里 "enable" 为true表示使用代理,false表示不使用代理
 
-## SS代理设置
+## SS代理设置,仅docker方式部署支持
 
 在 conf.d/shadowsocks.json
 ```
