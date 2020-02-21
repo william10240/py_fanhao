@@ -23,6 +23,8 @@
 
 在 conf.d/config.ini 的 "proxy" 里 "enable" 为true表示使用代理,false表示不使用代理
 
+## 使用brook代理
+编辑images里面的start.sh文件,将"000.000.000.000:00000"修改为代理服务的ip和端口
 
 ## 部署方式1:docker
 编辑 conf.d/shadowsocks.json 文件,增加并修改如下内容

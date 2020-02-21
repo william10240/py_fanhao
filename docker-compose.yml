@@ -9,13 +9,13 @@ services:
     container_name: mfan
     volumes:
       - ./:/app
-      - ./conf.d/polipo.conf:/etc/polipo/config
       
     working_dir: /app
 #    ports: 
 #      - 88:27004
     command: "/run/start.sh"
-    restart: always
+    # command: "ls -all /run"
+    # restart: always
 
   ngx:
     image: nginx:1.14.0-alpine
@@ -27,4 +27,4 @@ services:
       - ./:/usr/share/nginx/html
     depends_on:
       - mfan
-    restart: always
+    # restart: always
