@@ -11,11 +11,11 @@ from aiohttp import web
 __author__ = 'SunCoder'
 
 APP_PATH = os.path.dirname(os.path.abspath(__file__))
-PHOTO_PATH = os.path.join(APP_PATH, 'photos')
+PHOTO_PATH = os.path.join(APP_PATH, 'data/photos')
 STATIC_PATH = os.path.join(APP_PATH, 'static')
 
-CONFIGBASE = os.path.join(APP_PATH, 'conf.d/config.ini.base')
-CONFIG = os.path.join(APP_PATH, 'conf.d/config.ini')
+CONFIGBASE = os.path.join(APP_PATH, 'config.ini.base')
+CONFIG = os.path.join(APP_PATH, 'config.ini')
 
 
 """
@@ -68,7 +68,7 @@ class Pager():
         self.index = index
         self.size = size
         self.count, tail = divmod(total, size)
-        if tail is not 0:
+        if tail != 0:
             self.count += 1
 
     def render(self):

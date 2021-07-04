@@ -4,27 +4,14 @@ version: '2'
 services:
 
   mfan:
-    build: ./images
-    image: mfan:3.5
+    build: .
+    image: mfan:3.9
     container_name: mfan
     volumes:
       - ./:/app
-      - ./conf.d/polipo.conf:/etc/polipo/config
-      
+      - /data/dcdb/mfans:/app/data
     working_dir: /app
-#    ports: 
-#      - 88:27004
-    command: "/run/start.sh"
-    restart: always
-
-  ngx:
-    image: nginx:1.14.0-alpine
-    container_name: mfan_ngx
-    ports:
+    ports: 
       - 27004:27004
-    volumes:
-      - ./images/:/etc/nginx/conf.d
-      - ./:/usr/share/nginx/html
-    depends_on:
-      - mfan
+    command: "python /app/app.py"
     restart: always

@@ -165,7 +165,7 @@ def initsys():
 if __name__ == '__main__':
 
     initsys()
-    app = web.Application(debug=True)
+    app = web.Application()
     app.add_routes([
         web.route("*",'/', index),
         web.route("*",'/search', search),

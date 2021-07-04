@@ -17,7 +17,7 @@ from Base import getconfig, APP_PATH
 #                 )
 
 from peewee import SqliteDatabase
-db = SqliteDatabase(os.path.join(APP_PATH, 'fan.db'))
+db = SqliteDatabase(os.path.join(APP_PATH, 'data/fan.db'))
 
 
 class BaseModel(Model):

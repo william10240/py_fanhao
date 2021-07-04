@@ -1,9 +1,6 @@
 <p align="center">
 	<h1 align="center">番械库</h1>
 	<h3 align="center">私人番号收藏</h3>
-	<p align="center">
-		<a href="http://www.williamyan.cn" target="_blank"><strong>Visit Suncoder &raquo;</strong></a>
-	</p>
 </p>
 
 ## 简介
@@ -18,43 +15,30 @@
 ## 注意事项
 根目录下"fan.db"文件为数据库文件,请注意存档备份;如有需要后续会推出自动备份功能
 
-## 1编辑配置文件
-首次运行前,从 conf.d/config.ini.base 拷贝一份 命名为 config.ini
+首次运行前,从 config.ini.base 拷贝一份 命名为 config.ini,如果忘记程序会自动生成一份
 
-在 conf.d/config.ini 的 "proxy" 里 "enable" 为true表示使用代理,false表示不使用代理
-
-
-## 部署方式1:docker
-编辑 conf.d/shadowsocks.json 文件,增加并修改如下内容
-```
-{
-    "server": "xxxxxxxxxx",
-    "server_port": xxxxxxxxxx,
-    "local_address": "127.0.0.1",
-    "local_port": 1080,
-    "password": "xxxxxxxxxx",
-    "timeout": 600,
-    "method": "chacha20-ietf-poly1305",
-    "fast_open": false
-}
-```
+## 部署方式1:docker(推荐!推荐!推荐!)
 根目录下有docker-compose文件,直接"docker-compose up"
-
-启动后默认端口是27004,在docker-compose.yml中可修改
 
 启动后 <http://127.0.0.1:27004/> 访问
 
+端口可在docker-compose.yml中可修改
+
 
 ## 部署方法2:手动
+运行 python app.py
+
+启动后 <http://127.0.0.1:27004/> 访问
+
+端口可在docker-compose.yml中可修改
+
+
+## 关于代理
 确保本地小飞机软件已打开,并设置"允许其他设备接入",
 
 端口设置默认为1080(具体方法请绅士),
 
-在conf.d/config.ini中可配置代理连接信息
-
-运行 app.py
-
-启动后 <http://127.0.0.1:27004/> 访问
+在 config.ini 的 "proxy" 里 "enable" 为true表示使用代理,false表示不使用代理
 
 
 

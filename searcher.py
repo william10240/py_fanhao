@@ -109,7 +109,7 @@ def _saveImg(imgsrc, fname):
 
 
 async def _request(fcode, tims=0):
-    url = 'https://'+getconfig('dbweb','url')+'/' + fcode
+    url = getconfig('dbweb','url')+'/' + fcode
     logging.info("request:"+url)
     try:
         res = opener().open(url, timeout=20)

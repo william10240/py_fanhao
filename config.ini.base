@@ -22,6 +22,6 @@ https = http://127.0.0.1:8123/
 
 [dbweb]
 # 以下有多个可用地址,不行就换一个
-url = www.javbus.com
-#url = www.javbus.info
+url = https://www.javbus.com
+#url = https://www.javbus.info
 # ....
