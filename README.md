@@ -1,3 +1,5 @@
+# 本分支停止更新,brook代理不好用,请切换main分支继续使用
+
 <p align="center">
 	<h1 align="center">番械库</h1>
 	<h3 align="center">私人番号收藏</h3>
