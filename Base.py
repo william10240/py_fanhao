@@ -8,7 +8,7 @@ from aiohttp import web
 
 #from smb.SMBConnection import SMBConnection
 
-__author__ = 'SunCoder'
+__author__ = 'william'
 
 APP_PATH = os.path.dirname(os.path.abspath(__file__))
 PHOTO_PATH = os.path.join(APP_PATH, 'data/photos')

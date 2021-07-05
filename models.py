@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-__author__ = 'SunCoder'
+__author__ = 'william'
 
 import time,os
 from peewee import Model,PrimaryKeyField,CharField,CharField,IntegerField

@@ -1,5 +1,12 @@
 
-version: '2'
+version: '3'
+
+
+networks:
+  default:
+    external:
+        name: wmnet
+
 
 services:
 
@@ -11,7 +18,7 @@ services:
       - ./:/app
       - /data/dcdb/mfans:/app/data
     working_dir: /app
-    ports: 
-      - 27004:27004
+    # ports: 
+    #   - 27004:27004
     command: "python /app/app.py"
     restart: always

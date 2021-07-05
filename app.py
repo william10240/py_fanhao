@@ -16,7 +16,7 @@ from models import db, fanhao
 
 routes = web.RouteTableDef()
 
-__author__ = 'SunCoder'
+__author__ = 'william'
 
 env = Environment(loader=FileSystemLoader(os.path.join(APP_PATH, 'templates')))
 
