@@ -28,13 +28,6 @@
             <input type="hidden" name="pageindex" id="pageindex" value="{{ requestdata['pageindex'] }}"/>
             <input type="hidden" name="pagesize" id="pagesize" value="{{ requestdata['pagesize'] }}"/>
         </form>
-
-        <form class="input-group pull-right" style="width: 250px;" id="searchform">
-            <input type="text" placeholder="IPZ-135" class="form-control" id="xcode"/>
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="submit" id="search">Search !</button>
-            </span>
-        </form>
     </header>
 
     <pager class="text-center">{{ pagehtml }}</pager>
@@ -45,11 +38,11 @@
                 <div id="col-{{ p.id }}" class="thumbnail">
                     <div class="caption text-center">
                         <div class="text-left">
-                            <a href="https://{{dbweb}}/{{ p.code }}" target="_blank" style="color: #333333;">{{ p.code }}</a>
+                            <a href="{{dbweb}}/{{ p.code }}" target="_blank" style="color: #333333;">{{ p.code }}</a>
                             {% if p.starcode %}
-                                (<a href="https://{{dbweb}}/star/{{ p.starcode }}" target="_blank" style="color: #333333;" id="star-{{ p.id }}">{{ p.star }}</a>)
+                                (<a href="{{dbweb}}/star/{{ p.starcode }}" target="_blank" style="color: #333333;" id="star-{{ p.id }}">{{ p.star }}</a>)
                             {% else %}
-                                (<a href="https://{{dbweb}}/star/{{ p.starcode }}" target="_blank" style="color: #ff0000;" id="star-{{ p.id }}">{{ p.star }}</a>)
+                                (<a href="{{dbweb}}/star/{{ p.starcode }}" target="_blank" style="color: #ff0000;" id="star-{{ p.id }}">{{ p.star }}</a>)
                             {% endif %}
                         </div>
                         <div class="pull-left">
@@ -76,7 +69,7 @@
                             <a href="javascript:" class="btn btn-success btn-xs" onclick="reimg('{{ p.id }}','{{ p.code }}')">更新信息</a>
                         </div>
                     </div>
-                    <a href="https://{{dbweb}}/{{ p.code }}" target="_blank"><img id="pic-{{ p.id }}" src="./photos/{{ p.fname }}"/></a>
+                    <a href="{{dbweb}}/{{ p.code }}" target="_blank"><img id="pic-{{ p.id }}" src="./photos/{{ p.fname }}" style="height:276px"/></a>
                     <div class="caption">
                         <a href="javascript:" class="btn btn-success btn-xs pull-right" onclick="deimg('{{ p.id }}')">删除</a>
                         <span id="star" class="level">

@@ -16,8 +16,8 @@ __author__ = 'william'
 
 ptCode = re.compile(r'<span class="header">識別碼:</span>.*?<span style="color:#CC0000;">(.*?)</span>', re.I | re.S | re.M)
 psTitle = re.compile(r'<h3>(.*?)</h3>', re.I | re.S | re.M)
-psStarCode = re.compile(r'<div class="star-name"><a href="https://www.javbus.*?star/(.*?)" title=".*?">.*?</a></div>', re.I | re.S | re.M)
-psStar = re.compile(r'<div class="star-name"><a href="https://www.javbus.*?star/.*?" title=".*?">(.*?)</a></div>', re.I | re.S | re.M)
+psStarCode = re.compile(r'<div class="star-name"><a href="https://.*?/star/(.*?)" title=".*?">.*?</a></div>', re.I | re.S | re.M)
+psStar = re.compile(r'<div class="star-name"><a href="https://.*?/star/.*?" title=".*?">(.*?)</a></div>', re.I | re.S | re.M)
 ptImg = re.compile(r'<a class="bigImage" href="(.*?)">', re.I | re.S | re.M)
 
 def opener():
@@ -91,8 +91,9 @@ def _saveInf(infoData):
 
 
 def _saveImg(imgsrc, fname):
+    imgurl = getconfig('dbweb','url') + '/' + imgsrc
     try:
-        rs = opener().open(imgsrc, timeout=15)
+        rs = opener().open(imgurl, timeout=15)
         rs = rs.read()
     except Exception as e:
         return json(-1, '网络错误:' + str(e))
