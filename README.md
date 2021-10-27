@@ -3,6 +3,8 @@
 	<h3 align="center">私人番号收藏</h3>
 </p>
 
+# 2021-10-27
+
 # 此项目已停止更新,功能转移到golang版本的继续维护
 
 # [https://github.com/williamyan1024/fanhao](https://github.com/williamyan1024/fanhao)
