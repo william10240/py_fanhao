@@ -3,7 +3,9 @@
 	<h3 align="center">私人番号收藏</h3>
 </p>
 
-# 此项目已停止更新,功能转移到golang版本的继续维护,地址:https://github.com/williamyan1024/fanhao(https://github.com/williamyan1024/fanhao),数据库结构有调整,互不兼容,请重新获取,图片目录可以直接拷贝过去
+# 此项目已停止更新,功能转移到golang版本的继续维护,地址:https://github.com/williamyan1024/fanhao(https://github.com/williamyan1024/fanhao)
+
+## 此次调整后 数据库结构有调整,互不兼容,请重新获取; 图片目录photos可以直接拷贝到新项目中
 
 ## 简介
 每个人都有自己喜欢的番号，每个人都想有自己记录番号的小本本。。
